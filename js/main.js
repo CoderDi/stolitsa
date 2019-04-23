@@ -61,7 +61,6 @@ $(document).ready(function(){
     autoplaySpeed: 6000,
     arrows: false,
     dots: true,
-    slide: ".slider__item",
     draggable: false
   });
 
