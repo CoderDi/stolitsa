@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Красивая мебель | Мягкая и корпусная мебель</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="libs/slick/slick.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+   
+
+  <div class="popup">
+    <a class="popup-bg"></a>
+    <div class="popup-content">
+      <a class="popup-close"></a>
+
+      <div class="popup-block popup-block__getcall" id="popup-getcall">
+        <span class="form__title">Закажите звонок </span>
+        <span class="form__subtitle">Перезвоним в рабочее время</span>
+        <form class="popup__form call-form">
+          <input type="text" class="input popup__input" placeholder="Как Вас зовут?" required>
+          <input type="tel" class="input popup__input" placeholder="Ваш телефон" required>
+          <input type="submit" class="btn submit popup__submit" value="Перезвонить мне">
+        </form>
+      </div>
+
+      <div class="popup-block popup-block__mail" id="popup-mail">
+        <span class="form__title">Напишите нам письмо</span>
+        <span class="form__subtitle">ответим на любые вопросы</span>
+        <form class="popup__form mail-form">
+          <input type="text" class="input popup__input" placeholder="Имя" required>
+          <input type="tel" class="input popup__input" placeholder="Телефон" required>
+          <input type="email" class="input popup__input" placeholder="Почта" required>
+          <textarea class="input popup__textarea" placeholder="Сообщение" required></textarea>
+          <input type="submit" class="btn submit popup__submit" value="Отправить">
+        </form>
+      </div>
+
+      <div class="popup-block popup-block__map" id="popup-map">
+        <div class="popup__map" id="map"></div>
+      </div>
+
+      <div class="popup-block popup-block__success" id="popup-success">
+        <span class="form__title success__title">Спасибо!</span>
+        <span class="success__subtitle">Ваша заявка отправлена, дождитесь нашего звонка,
+            или звоните нам сами:</span>
+        <a href="tel:+7 (964) 864-19-19" class="popup__phone">+7 (964) 864-19-19</a>
+      </div>
+
+    </div>
+  </div> 
+
+  <script src="libs/jquery/jquery-3.3.1.min.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script src="libs/slick/slick.min.js"></script>
+  <script src="js/maskedinput.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
