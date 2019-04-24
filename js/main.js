@@ -32,6 +32,17 @@ $(function(){
 
 $(document).ready(function(){
 
+  $("#projects").on( 'mousemove', function( e ) {
+    var amountMovedX = 60 * ( (e.pageX + 1) / $( document ).width() ) - 100;
+    var amountMovedY = 60 * ( (e.pageY + 1) / $( window ).height() ) + 100;
+
+    $( '#move-sheets-left' ).css('left', amountMovedX + 'px ');
+    $( '#move-sheets-left' ).css('top', amountMovedY + 'px' );
+
+    $( '#move-sheets-right' ).css('right', amountMovedX + 'px ');
+    $( '#move-sheets-right' ).css('top', amountMovedY + 'px' );
+  } ); 
+
   $(".js-getcall").click(function(){
     $(".popup-block").hide();
     $("#popup-getcall").show();
