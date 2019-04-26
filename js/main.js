@@ -65,6 +65,25 @@ $(document).ready(function(){
     $(".popup").removeClass("popup--show");
   });
 
+  $("#pod-usadku").click(function(){
+    $(".komplects__block").hide();
+    $(".komplects__block--usadka").show();
+  });
+  $("#pod-kluch").click(function(){
+    $(".komplects__block").hide();
+    $(".komplects__block--kluch").show();
+  });
+
+  $(".menu__item_arrow").click(function(){
+    $(this).parent(".menu__item").toggleClass("menu__item--open");
+  });
+  $(".butter").click(function(){
+    $(".menu").addClass("menu--show");
+  });
+  $(".menu-close").click(function(){
+    $(".menu").removeClass("menu--show");
+  });
+
 
   $(".js-slider").slick({
     infinite: true,
@@ -73,6 +92,57 @@ $(document).ready(function(){
     arrows: false,
     dots: true,
     draggable: false
+  });
+
+  $('.js-slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: '.js-slider-nav'
+  });
+  $('.js-slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: '.js-slider-for',
+    dots: false,
+    arrows: true,
+    focusOnSelect: true
+  });
+
+
+
+  var a = 0;
+  $(window).on('scroll load resize', function() {
+
+    if ($('#counter').length > 0) {
+      var oTop = $('#counter').offset().top - window.innerHeight + 200;
+      if (a == 0 && $(window).scrollTop() > oTop) {
+        $('.counter-value').each(function() {
+          var $this = $(this),
+            countTo = $this.attr('data-count');
+          $({
+            countNum: $this.text()
+          }).animate({
+              countNum: countTo
+            },
+
+            {
+              duration: 2000,
+              easing: 'swing',
+              step: function() {
+                $this.text(Math.floor(this.countNum));
+              },
+              complete: function() {
+                $this.text(this.countNum);
+              }
+
+            });
+        });
+        a = 1;
+      }
+    }
+
   });
 
 
@@ -98,43 +168,33 @@ $(document).ready(function(){
   if ($("#map").length != 0) {
     ymaps.ready(function () {
       var myMap = new ymaps.Map('map', {
-            center: [56.640911, 47.902115],
-            zoom: 17,
+            center: [56.643702, 47.986668],
+            zoom: 12,
             controls: []
           }),
           
-          myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-            hintContent: 'ул. Советская, 95',
-            balloonContent: 'ул. Советская, 95'
+          myPlacemark = new ymaps.Placemark([56.637164, 47.884256], {
+            hintContent: 'Адрес офиса: бульвар Победы, 5',
+            balloonContent: 'Адрес офиса: бульвар Победы, 5'
           }, {
             iconLayout: 'default#image',
-            iconImageHref: 'images/icons/pin.png',
-            iconImageSize: [31, 50],
-            iconImageOffset: [15, -50]
+            iconImageHref: 'images/pin-map.png',
+            iconImageSize: [55, 69],
+            iconImageOffset: [-27, -69]
+          });
+          myPlacemark2 = new ymaps.Placemark([56.642115502854054,48.09462169320679], {
+            hintContent: 'Адрес производства: деревня Паганур',
+            balloonContent: 'Адрес производства: деревня Паганур'
+          }, {
+            iconLayout: 'default#image',
+            iconImageHref: 'images/pin-map.png',
+            iconImageSize: [55, 69],
+            iconImageOffset: [-27, -69]
           });
           
       myMap.behaviors.disable('scrollZoom');
       myMap.geoObjects.add(myPlacemark);
-
-      if ($("#contacts-map").length != 0) {
-        var myMap2 = new ymaps.Map('contacts-map', {
-              center: [56.640911, 47.902115],
-              zoom: 17,
-              controls: []
-            }),
-
-            myPlacemark2 = new ymaps.Placemark(myMap2.getCenter(), {
-              hintContent: 'ул. Советская, 95',
-              balloonContent: 'ул. Советская, 95'
-            }, {
-              iconLayout: 'default#image',
-              iconImageHref: 'images/icons/pin.png',
-              iconImageSize: [31, 50],
-              iconImageOffset: [15, -50]
-            });
-        myMap2.behaviors.disable('scrollZoom');
-        myMap2.geoObjects.add(myPlacemark2);
-        }
+      myMap.geoObjects.add(myPlacemark2);
     });
   }  
 });
