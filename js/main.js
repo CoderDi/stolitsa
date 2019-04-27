@@ -28,6 +28,46 @@ $(function(){
       }
     })
   });
+  $('form.project__form').submit(function(e) {
+    e.preventDefault();
+    $('input[type=submit]',this).prop('disabled',true).css({opacity:.5})
+    $.ajax({
+      type:'POST',
+      url:`/?do=call&setcsrf=${$('form.project__form').data('csrf')}`,
+      data: $(this).serialize(),
+      success: function(data) {
+        console.log(data);
+        if (data == 'success') {
+          $(".popup-block").hide();
+          $("#popup-success").show();
+          $(".popup").addClass("popup--show");
+        }
+        else {
+          
+        }
+      }
+    })
+  });
+  $('form.banner__form').submit(function(e) {
+    e.preventDefault();
+    $('input[type=submit]',this).prop('disabled',true).css({opacity:.5})
+    $.ajax({
+      type:'POST',
+      url:`/?do=call&setcsrf=${$('form.banner__form').data('csrf')}`,
+      data: $(this).serialize(),
+      success: function(data) {
+        console.log(data);
+        if (data == 'success') {
+          $(".popup-block").hide();
+          $("#popup-success").show();
+          $(".popup").addClass("popup--show");
+        }
+        else {
+          
+        }
+      }
+    })
+  });
 })
 
 $(document).ready(function(){
@@ -48,14 +88,9 @@ $(document).ready(function(){
     $("#popup-getcall").show();
     $(".popup").addClass("popup--show");
   });
-  $(".js-getmap").click(function(){
+  $(".js-getras").click(function(){
     $(".popup-block").hide();
-    $("#popup-map").show();
-    $(".popup").addClass("popup--show");
-  });
-  $(".js-getpriem").click(function(){
-    $(".popup-block").hide();
-    $("#popup-priem").show();
+    $("#popup-ras").show();
     $(".popup").addClass("popup--show");
   });
   $(".popup-close").click(function(){
@@ -87,7 +122,7 @@ $(document).ready(function(){
 
   $(".js-slider").slick({
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 6000,
     arrows: false,
     dots: true,
@@ -109,6 +144,57 @@ $(document).ready(function(){
     arrows: true,
     focusOnSelect: true
   });
+
+  function windowsSlider() {
+    if ($(window).width() <= 960) {
+      if (($(".three__wrapper").length != 0) && !($(".three__wrapper").hasClass("slick-slider"))) {
+        $(".three__wrapper").slick({
+          infinite: false,
+          arrows: true
+        });
+      }
+      if (($(".gallery__flex").length != 0) && !($(".gallery__flex").hasClass("slick-slider"))) {
+        $(".gallery__flex").slick({
+          infinite: false,
+          arrows: true
+        });
+      }
+    } else {
+      if (($(".three__wrapper").length != 0) && ($(".three__wrapper").hasClass("slick-slider"))){
+        $(".three__wrapper").slick('unslick');
+      }
+      if (($(".gallery__flex").length != 0) && ($(".gallery__flex").hasClass("slick-slider"))){
+        $(".gallery__flex").slick('unslick');
+      }
+    }
+
+    if ($(window).width() <= 750) {
+      if (($(".etaps__flex").length != 0) && !($(".etaps__flex").hasClass("slick-slider"))) {
+        $(".etaps__flex").slick({
+          infinite: false,
+          slide: ".etap",
+          arrows: true
+        });
+      }
+      if (($(".about__flex-slider").length != 0) && !($(".about__flex-slider").hasClass("slick-slider"))) {
+        $(".about__flex-slider").slick({
+          infinite: false,
+          arrows: true
+        });
+      }
+    } else {
+      if (($(".etaps__flex").length != 0) && ($(".etaps__flex").hasClass("slick-slider"))){
+        $(".etaps__flex").slick('unslick');
+      }
+      if (($(".about__flex-slider").length != 0) && ($(".about__flex-slider").hasClass("slick-slider"))){
+        $(".about__flex-slider").slick('unslick');
+      }
+    }
+  }
+  windowsSlider();
+  $(window).resize(function(){
+    windowsSlider();
+  })
 
 
 
@@ -169,7 +255,7 @@ $(document).ready(function(){
     ymaps.ready(function () {
       var myMap = new ymaps.Map('map', {
             center: [56.643702, 47.986668],
-            zoom: 12,
+            zoom: 10,
             controls: []
           }),
           
